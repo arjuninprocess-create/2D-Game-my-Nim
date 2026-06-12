@@ -28,8 +28,13 @@ def play_game():
         while human_move not in [1, 2, 3] or tokens - human_move < 0:
             try:
                 human_move = int(input("Your turn! How many tokens do you want to take? (1-3): "))
+                if 1 <= human_move <= 3 and tokens - human_move >= 0:
+                   break
+                else:
+                    print("❌ Wrong number typed in, try again.")
             except ValueError:
                 print("Please enter a valid number.")
+            
         
         tokens -= human_move
         if brain.is_game_over(tokens):
